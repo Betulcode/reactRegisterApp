@@ -1,8 +1,10 @@
 import React from 'react'
 import {Button,TextField,Container,Grid} from "@material-ui/core"
 import {makeStyles } from "@material-ui/styles"
+import {useFormik} from "formik"
 
 export const SignUp = () => {
+
     const styles=makeStyles({
         wrapper:{
             marginTop:"5rem",
@@ -11,6 +13,21 @@ export const SignUp = () => {
         }
     })
     const signUpStyle=styles();
+
+    const SignupForm = () => {     
+        const formik = useFormik({
+          initialValues: {
+            displayName: '',
+            email:"",
+            password:""
+          },
+          onSubmit: values => {
+            alert(JSON.stringify(values, null, 2));
+          },
+        });
+    console.log(formik)
+    }
+     
 
     return (
         <Container className={signUpStyle.wrapper} maxWidth="sm">
