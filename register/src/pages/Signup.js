@@ -3,47 +3,70 @@ import {Button,TextField,Container,Grid} from "@material-ui/core"
 import {makeStyles } from "@material-ui/styles"
 import {useFormik} from "formik"
 
+const styles=makeStyles({
+    wrapper:{
+        marginTop:"5rem",
+        justifyContent:"center",
+        alignItems:"center"
+    }
+})
+
+
+
 export const SignUp = () => {
 
-    const styles=makeStyles({
-        wrapper:{
-            marginTop:"5rem",
-            justifyContent:"center",
-            alignItems:"center"
-        }
-    })
-    const signUpStyle=styles();
-
-    const SignupForm = () => {     
         const formik = useFormik({
           initialValues: {
             displayName: '',
             email:"",
             password:""
           },
-          onSubmit: values => {
+          onSubmit: (values) => {
             alert(JSON.stringify(values, null, 2));
           },
         });
-    console.log(formik)
-    }
-     
-
+    
+    
+    const signUpStyle=styles();
+  
+ console.log(formik)
     return (
         <Container className={signUpStyle.wrapper} maxWidth="sm">
-            <form>
+            <form  onSubmit={formik.handleSubmit}>
                 <Grid container spacing={3}>
                  <Grid item xs={12}>
-                    <TextField id="outlined-basic" label="Display Name" variant="outlined" fullWidth/>
+                    <TextField 
+                        name="displayName"
+                        label="Display Name" 
+                        variant="outlined" 
+                        fullWidth
+                        onChange={formik.handleChange}
+                        value={formik.values.displayName}
+                    />
                  </Grid>
                  <Grid item xs={12}>
-                    <TextField id="outlined-basic" label="E-mail" variant="outlined" fullWidth/>
+                    <TextField 
+                        name="email"
+                        label="E-mail" 
+                        variant="outlined" 
+                        fullWidth
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                    />
                  </Grid>
                  <Grid item xs={12}>
-                    <TextField id="outlined-basic" label="Password" variant="outlined" fullWidth/>
+                    <TextField 
+                        name="password"
+                        label="Password" 
+                        variant="outlined" 
+                        fullWidth
+                        type="password"
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
+                    />
                  </Grid>
                  <Grid item xs={12}>
-                        <Button variant="contained" color="secondary" fullWidth> Sign In </Button>
+                        <Button type="submit" variant="contained" color="secondary" fullWidth> Sign In </Button>
                  </Grid>
                  <Grid item xs={12}>
                         <Button variant="contained" color="secondary" fullWidth> Sign In with Google </Button>
