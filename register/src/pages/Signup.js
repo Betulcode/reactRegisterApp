@@ -2,6 +2,8 @@ import React from 'react'
 import {Button,TextField,Container,Grid} from "@material-ui/core"
 import {makeStyles } from "@material-ui/styles"
 import {useFormik} from "formik"
+import firebase from "../firebase/firebase.utils"
+console.log("firebase:", firebase)
 
 const styles=makeStyles({
     wrapper:{
@@ -29,7 +31,8 @@ export const SignUp = () => {
     
     const signUpStyle=styles();
   
- console.log(formik)
+
+
     return (
         <Container className={signUpStyle.wrapper} maxWidth="sm">
             <form  onSubmit={formik.handleSubmit}>
